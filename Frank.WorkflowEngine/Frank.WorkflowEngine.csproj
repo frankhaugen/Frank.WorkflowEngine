@@ -2,5 +2,11 @@
 
   <PropertyGroup>
   </PropertyGroup>
+  
+    <ItemGroup>
+        <PackageReference Include="Frank.CronJobs" Version="0.1.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+        
+    </ItemGroup>
 
 </Project>
