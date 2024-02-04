@@ -4,9 +4,9 @@
   </PropertyGroup>
   
     <ItemGroup>
-        <PackageReference Include="Frank.CronJobs" Version="1.1.0" />
+        <PackageReference Include="Frank.CronJobs" Version="2.0.0" />
         <PackageReference Include="Frank.Mapping" Version="1.1.0" />
-        <PackageReference Include="Frank.PulseFlow" Version="1.7.0" />
+        <PackageReference Include="Frank.Channels.DependencyInjection" Version="1.1.0" />
         <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.0" />
         <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
         
