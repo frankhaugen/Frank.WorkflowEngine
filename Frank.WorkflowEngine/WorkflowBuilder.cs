@@ -1,6 +1,4 @@
 using Frank.Channels.DependencyInjection;
-using Frank.CronJobs;
-using Frank.CronJobs.Cron;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Frank.WorkflowEngine;
@@ -9,20 +7,18 @@ public class WorkflowBuilder(IServiceCollection services)
 {
     private bool _hasStartStep = false;
     
-    public WorkflowBuilder StartWith<TStep, TOut>() where TStep : class, ITriggerStep<TOut>, ICronJob where TOut : class
+    public WorkflowBuilder StartWith<TStep, TOut>() where TStep : class, IStartStep<TOut> where TOut : class
     {
         if (_hasStartStep)
             throw new InvalidOperationException("Start step already defined");
         _hasStartStep = true;
         services.AddChannel<TOut>();
-        services.AddCronJob<TStep>(PredefinedCronExpressions.EveryMinute);
+        services.AddSingleton<IStartStep<TOut>, TStep>();
         return this;
     }
     
     public WorkflowBuilder Then<TStep, TIn, TOut>() where TStep : class, IStep<TIn, TOut> where TIn : class where TOut : class
     {
-        if (!_hasStartStep)
-            throw new InvalidOperationException("Start step not defined");
         services.AddSingleton<IStep<TIn, TOut>, TStep>();
         services.AddChannel<TIn>();
         services.AddChannel<TOut>();

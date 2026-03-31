@@ -32,7 +32,7 @@ var host = builder.Build();
 
 await host.RunAsync();
     
-public class GetTimeZonesStep(IHttpClientFactory httpClientFactory, ChannelWriter<string> writer) : ITriggerStep<string>
+public class GetTimeZonesStep(IHttpClientFactory httpClientFactory, ChannelWriter<string> writer) : IStartStep<string>
 {
     public async Task RunAsync(CancellationToken cancellationToken)
     {

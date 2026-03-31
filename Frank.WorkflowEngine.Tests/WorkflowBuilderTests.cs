@@ -1,7 +1,5 @@
 ﻿using System.Threading.Channels;
-using Frank.Reflection;
 using Frank.Testing.TestBases;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -42,7 +40,7 @@ public class WorkflowBuilderTests : HostApplicationTestBase
     public record MyInt(int Value);
     
 
-    public class StartStep(ILogger<StartStep> logger, ChannelWriter<MyString> writer) : ITriggerStep<MyString>
+    public class StartStep(ILogger<StartStep> logger, ChannelWriter<MyString> writer) : IStartStep<MyString>
     {
         /// <inheritdoc />
         public async Task RunAsync(CancellationToken cancellationToken)
